@@ -22,7 +22,7 @@ public class Persona {
 
     @Override
     public String toString() {
-        return "Persona{" + "nombres=" + nombres + ", apellidos=" + apellidos + ", email=" + email + '}';
+        return "Nombre=" + nombres + ", Apellido=" + apellidos + ", email=" + email;
     }
     
 }
