@@ -19,4 +19,10 @@ public class Persona {
         this.apellidos = apellidos;
         this.email = email;
     }
+
+    @Override
+    public String toString() {
+        return "Persona{" + "nombres=" + nombres + ", apellidos=" + apellidos + ", email=" + email + '}';
+    }
+    
 }
