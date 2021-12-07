@@ -5,8 +5,10 @@
  */
 package buscadorfugasinf;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 /**
  *
@@ -17,10 +19,10 @@ public class AlgoritmoMatch {
     public static int matcherFuerzabruta(String texto, String patron) {
         int longTexto = texto.length();
         int longPatron = patron.length();
-
         if (longPatron > longTexto) {
             return -1;
         }
+        
         int indexPatron;
         for (int i = 0; i <= longTexto - longPatron; i++) {
             indexPatron = 0;
@@ -66,8 +68,7 @@ public class AlgoritmoMatch {
         while (textIndex < longTexto) {
             if (texto.charAt(textIndex) == patron.charAt(patternIndex)) {
                 if (patternIndex == (longPatron - 1)) {
-                    return textIndex - longPatron + 1;
-                    
+                    return textIndex - longPatron + 1;                    
                 }
                 textIndex++;
                 patternIndex++;
@@ -81,7 +82,7 @@ public class AlgoritmoMatch {
     }
 
     public static int matcherBoyerMoore(String texto, String patron) {
-        int posicionCoincidencia = 0;
+        int posicionCoincidencia = -1;
         //Longitudes del patron y del texto
         int n = texto.length();
         int m = patron.length();
