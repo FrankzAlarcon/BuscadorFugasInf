@@ -43,7 +43,7 @@ public class TestBuscador {
         System.out.println("Tiempo de ejecucion con Fuerza bruta en ms es: " + tiempoFinal + "ms");
         String ocurrencias = personasGmailByFB.size() + " ocurrencias de gmail    " + personasYahooByFB.size() + " ocurrencias de yahoo";
         System.out.println(ocurrencias);
-        jftabla.agregarDatos("Fuerza Bruta ", tiempoFinal, ocurrencias);
+        jftabla.agregarDatosLeaked("Fuerza Bruta ", tiempoFinal, ocurrencias);
         //KMP
         System.out.println("KMP");
         //Busqueda
@@ -61,7 +61,7 @@ public class TestBuscador {
         System.out.println("Tiempo de ejecucion con KMP en ms es: " + tiempoFinal + "ms");
         ocurrencias = personasGmailByKMP.size() + " ocurrencias de gmail    " + personasYahooByKMP.size() + " ocurrencias de yahoo";
         System.out.println(ocurrencias);
-        jftabla.agregarDatos("KMP ", tiempoFinal, ocurrencias);
+        jftabla.agregarDatosLeaked("KMP ", tiempoFinal, ocurrencias);
         //BM
         System.out.println("BM");
         //Busqueda
@@ -79,7 +79,7 @@ public class TestBuscador {
         System.out.println("Tiempo de ejecucion con BM en ms es: " + tiempoFinal + "ms");
         ocurrencias = personasGmailByBM.size() + " ocurrencias de gmail    " + personasYahooByBM.size() + " ocurrencias de yahoo";
         System.out.println(ocurrencias);
-        jftabla.agregarDatos("Boyer Moore ", tiempoFinal, ocurrencias);
+        jftabla.agregarDatosLeaked("Boyer Moore ", tiempoFinal, ocurrencias);
         jftabla.setVisible(true);
         //---------------------------------------------------------------------------//
         //Caso phiser
