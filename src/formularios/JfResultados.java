@@ -75,6 +75,15 @@ public class JfResultados extends javax.swing.JFrame {
     public void setValoresBM(String resultados){
         txaBM.setText(resultados);
     }
+    public void setValoresFB2(String resultados){
+        txaFB2.setText(resultados);
+    }
+    public void setValoresKMP2(String resultados){
+        txaKMP2.setText(resultados);
+    }
+    public void setValoresBM2(String resultados){
+        txaBM2.setText(resultados);
+    }
         
 
     /**
@@ -106,10 +115,10 @@ public class JfResultados extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         jTResultados2 = new javax.swing.JTable();
         jScrollPane6 = new javax.swing.JScrollPane();
-        txaKMP2 = new javax.swing.JTextArea();
+        txaFB2 = new javax.swing.JTextArea();
         lblFB1 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
-        txaFB2 = new javax.swing.JTextArea();
+        txaKMP2 = new javax.swing.JTextArea();
         jScrollPane8 = new javax.swing.JScrollPane();
         txaBM2 = new javax.swing.JTextArea();
         lblKMP1 = new javax.swing.JLabel();
@@ -192,10 +201,11 @@ public class JfResultados extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPLeakedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblKMP)
-                    .addComponent(lblFB)
-                    .addComponent(lblBM))
+                .addGroup(jPLeakedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblKMP, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPLeakedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblFB)
+                        .addComponent(lblBM)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPLeakedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
@@ -222,17 +232,17 @@ public class JfResultados extends javax.swing.JFrame {
         ));
         jScrollPane5.setViewportView(jTResultados2);
 
-        txaKMP2.setColumns(20);
-        txaKMP2.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
-        txaKMP2.setRows(5);
-        jScrollPane6.setViewportView(txaKMP2);
-
-        lblFB1.setText("Fuerza Bruta");
-
         txaFB2.setColumns(20);
         txaFB2.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
         txaFB2.setRows(5);
-        jScrollPane7.setViewportView(txaFB2);
+        jScrollPane6.setViewportView(txaFB2);
+
+        lblFB1.setText("Fuerza Bruta");
+
+        txaKMP2.setColumns(20);
+        txaKMP2.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
+        txaKMP2.setRows(5);
+        jScrollPane7.setViewportView(txaKMP2);
 
         txaBM2.setColumns(20);
         txaBM2.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
@@ -281,10 +291,11 @@ public class JfResultados extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPPhisherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblKMP1)
-                    .addComponent(lblFB1)
-                    .addComponent(lblBM1))
+                .addGroup(jPPhisherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblKMP1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPPhisherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblFB1)
+                        .addComponent(lblBM1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPPhisherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)

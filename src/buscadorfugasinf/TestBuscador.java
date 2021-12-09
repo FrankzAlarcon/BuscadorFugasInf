@@ -23,7 +23,6 @@ public class TestBuscador {
     /**
      * @param args the command line arguments
      */
-
     public static void main(String[] args) {
         JfResultados jftabla = new JfResultados();
         long tiempoIncial = System.currentTimeMillis();
@@ -37,7 +36,7 @@ public class TestBuscador {
         resultados += personaToString(personasGmailByFB);
         resultados += "Resultados yahoo";
         resultados += personaToString(personasYahooByFB);//No hay con yahoo 
-        System.out.println(resultados);
+        //System.out.println(resultados);
         jftabla.setValoresFB(resultados);
 
         System.out.println("Tiempo de ejecucion con Fuerza bruta en ms es: " + tiempoFinal + "ms");
@@ -57,7 +56,7 @@ public class TestBuscador {
         resultados += "Resultados yahoo\n";
         resultados += personaToString(personasYahooByKMP);
         jftabla.setValoresKMP(resultados);
-        System.out.println(resultados);
+        //System.out.println(resultados);
         System.out.println("Tiempo de ejecucion con KMP en ms es: " + tiempoFinal + "ms");
         ocurrencias = personasGmailByKMP.size() + " ocurrencias de gmail    " + personasYahooByKMP.size() + " ocurrencias de yahoo";
         System.out.println(ocurrencias);
@@ -75,17 +74,47 @@ public class TestBuscador {
         resultados += "Resultados yahoo\n";
         resultados += personaToString(personasYahooByBM);
         jftabla.setValoresBM(resultados);
-        System.out.println(resultados);
+        //System.out.println(resultados);
         System.out.println("Tiempo de ejecucion con BM en ms es: " + tiempoFinal + "ms");
         ocurrencias = personasGmailByBM.size() + " ocurrencias de gmail    " + personasYahooByBM.size() + " ocurrencias de yahoo";
         System.out.println(ocurrencias);
         jftabla.agregarDatosLeaked("Boyer Moore ", tiempoFinal, ocurrencias);
         jftabla.setVisible(true);
         //---------------------------------------------------------------------------//
-        //Caso phiser
-        ArrayList<Usuario> usuariosConAni = castingToUsuario(getDatosPorFB("src\\buscadorfugasinf\\phisher.txt", "ani", 2));
-        ArrayList<Usuario> usuariosConLang = castingToUsuario(getDatosPorFB("src\\buscadorfugasinf\\phisher.txt", "lang", 2));
-        System.out.println(usuarioToString(usuariosConAni));
+        //Caso phisher
+        //Fuerza Bruta
+        tiempoIncial = System.currentTimeMillis();
+        ArrayList<Usuario> usuariosConAniByFB = castingToUsuario(getDatosPorFB("src\\buscadorfugasinf\\phisher.txt", "ani", 2));
+        ArrayList<Usuario> usuariosConLangByFB = castingToUsuario(getDatosPorFB("src\\buscadorfugasinf\\phisher.txt", "lang", 2));
+        tiempoFinal = System.currentTimeMillis() - tiempoIncial;
+        //Impresion de resultados
+        resultados = "Usuarios con \"ani\" en email y/o password\n";
+        resultados += usuarioToString(usuariosConAniByFB);
+        resultados += "Usuarios con \"lang\" en email y/o password\n";
+        resultados += usuarioToString(usuariosConLangByFB);
+        jftabla.setValoresFB2(resultados);
+        //KMP
+        tiempoIncial = System.currentTimeMillis();
+        ArrayList<Usuario> usuariosConAniByKMP = castingToUsuario(getDatosPorKMP("src\\buscadorfugasinf\\phisher.txt", "ani", 2));
+        ArrayList<Usuario> usuariosConLangByKMP = castingToUsuario(getDatosPorKMP("src\\buscadorfugasinf\\phisher.txt", "lang", 2));
+        tiempoFinal = System.currentTimeMillis() - tiempoIncial;
+        //Impresion de resultados
+        resultados = "Usuarios con \"ani\" en email y/o password\n";
+        resultados += usuarioToString(usuariosConAniByKMP);
+        resultados += "Usuarios con \"lang\" en email y/o password\n";
+        resultados += usuarioToString(usuariosConLangByKMP);
+        jftabla.setValoresKMP2(resultados);
+        //BM
+        tiempoIncial = System.currentTimeMillis();
+        ArrayList<Usuario> usuariosConAniByBM = castingToUsuario(getDatosPorBM("src\\buscadorfugasinf\\phisher.txt", "ani", 2));
+        ArrayList<Usuario> usuariosConLangByBM = castingToUsuario(getDatosPorBM("src\\buscadorfugasinf\\phisher.txt", "lang", 2));
+        tiempoFinal = System.currentTimeMillis() - tiempoIncial;
+        //Impresion de resultados
+        resultados = "Usuarios con \"ani\" en email y/o password\n";
+        resultados += usuarioToString(usuariosConAniByBM);
+        resultados += "Usuarios con \"lang\" en email y/o password\n";
+        resultados += usuarioToString(usuariosConLangByBM);
+        jftabla.setValoresBM2(resultados);
     }
 
     private static String personaToString(ArrayList<Persona> lista) {
@@ -97,7 +126,7 @@ public class TestBuscador {
     }
 
     private static String usuarioToString(ArrayList<Usuario> lista) {
-        String resultado = "dfsdfsd";
+        String resultado = "";
         for (Usuario usuario : lista) {
             resultado += usuario.toString() + "\n";
         }
@@ -117,7 +146,7 @@ public class TestBuscador {
     private static ArrayList<Usuario> castingToUsuario(ArrayList<Object> lista) {
         ArrayList<Usuario> usuarios = new ArrayList<>();
         for (Object usuario : lista) {
-            if (usuario instanceof Persona) {
+            if (usuario instanceof Usuario) {
                 usuarios.add((Usuario) usuario);
             }
         }
@@ -126,7 +155,7 @@ public class TestBuscador {
 
     //ALGORTIMO FUERZA BRUTA
     private static ArrayList<Object> getDatosPorFB(String path, String patron, int tipo) {
-        ArrayList<Object> item = new ArrayList<>();
+        ArrayList<Object> items = new ArrayList<>();
         try {
             BufferedReader documento = new BufferedReader(new FileReader(new File(path)));
             String linea = documento.readLine();
@@ -136,27 +165,26 @@ public class TestBuscador {
                     datosPersona = linea.split(",");//1:nombres,2:apellidos,3:email
                     //System.out.println(Arrays.toString(datosPersona));
                     if (AlgoritmoMatch.matcherFuerzabruta(datosPersona[3], patron) > -1) {
-                        item.add(new Persona(datosPersona[1], datosPersona[2], datosPersona[3]));
+                        items.add(new Persona(datosPersona[1], datosPersona[2], datosPersona[3]));
                     }
-                    linea = documento.readLine();                    
+                    linea = documento.readLine();
                 }
             } else if (tipo == 2) {
                 int contador = 0;
                 String[] password = null;
                 String[] email = null;
-                int counter = 0;
-                while(linea != null){
-                    if(!linea.equals("")){
-                        if(contador == 1){
+                while (linea != null) {
+                    if (!linea.equals("")) {
+                        if (contador == 1) {
                             password = linea.split("=");
-                        }else if(contador == 0){
+                        } else if (contador == 0) {
                             email = linea.split("=");
-                        }                        
-                        if(email != null && password != null && email.length == 2 && password.length == 2){      
-                            System.out.println("creado");
-                            item.add(new Usuario(email[1], password[1]));
-                            System.out.println(item.get(counter).toString());
-                            counter++;
+                        }
+                        if (email != null && password != null && email.length == 2 && password.length == 2) {
+                            if (AlgoritmoMatch.matcherFuerzabruta(email[1], patron) > -1 || AlgoritmoMatch.matcherFuerzabruta(password[1], patron) > -1) {
+                                items.add(new Usuario(email[1], password[1]));
+                            }
+
                         }
                         contador++;
                         linea = documento.readLine();
@@ -173,12 +201,12 @@ public class TestBuscador {
         } catch (Exception e) {
             System.out.println(e.toString());
         }
-        return item;
+        return items;
     }
 
     //ALGORTIMO KMP
     private static ArrayList<Object> getDatosPorKMP(String path, String patron, int tipo) {
-        ArrayList<Object> personas = new ArrayList<>();
+        ArrayList<Object> items = new ArrayList<>();
         try {
             BufferedReader documento = new BufferedReader(new FileReader(new File(path)));
             String linea = documento.readLine();
@@ -187,12 +215,36 @@ public class TestBuscador {
                 while (linea != null) {
                     datosPersona = linea.split(",");//1:nombres,2:apellidos,3:email
                     if (AlgoritmoMatch.matcherKMP(datosPersona[3], patron) > -1) {
-                        personas.add(new Persona(datosPersona[1], datosPersona[2], datosPersona[3]));
+                        items.add(new Persona(datosPersona[1], datosPersona[2], datosPersona[3]));
                     }
                     linea = documento.readLine();
                 }
             } else if (tipo == 2) {
+                int contador = 0;
+                String[] password = null;
+                String[] email = null;
+                while (linea != null) {
+                    if (!linea.equals("")) {
+                        if (contador == 1) {
+                            password = linea.split("=");
+                        } else if (contador == 0) {
+                            email = linea.split("=");
+                        }
+                        if (email != null && password != null && email.length == 2 && password.length == 2) {
+                            if (AlgoritmoMatch.matcherKMP(email[1], patron) > -1 || AlgoritmoMatch.matcherKMP(password[1], patron) > -1) {
+                                items.add(new Usuario(email[1], password[1]));
+                            }
 
+                        }
+                        contador++;
+                        linea = documento.readLine();
+                    } else {
+                        contador = 0;
+                        password = null;
+                        email = null;
+                        linea = documento.readLine();
+                    }
+                }
             }
 
         } catch (IOException ioe) {
@@ -201,12 +253,12 @@ public class TestBuscador {
             System.out.println(e.toString());
         }
 
-        return personas;
+        return items;
     }
 
     //ALGORTIMO BM
     private static ArrayList<Object> getDatosPorBM(String path, String patron, int tipo) {
-        ArrayList<Object> personas = new ArrayList<>();
+        ArrayList<Object> items = new ArrayList<>();
         try {
             BufferedReader documento = new BufferedReader(new FileReader(new File(path)));
             String linea = documento.readLine();
@@ -215,12 +267,36 @@ public class TestBuscador {
                 while (linea != null) {
                     datosPersona = linea.split(",");//1:nombres,2:apellidos,3:email
                     if (AlgoritmoMatch.matcherBoyerMoore(datosPersona[3], patron) > -1) {
-                        personas.add(new Persona(datosPersona[1], datosPersona[2], datosPersona[3]));
+                        items.add(new Persona(datosPersona[1], datosPersona[2], datosPersona[3]));
                     }
                     linea = documento.readLine();
                 }
             } else if (tipo == 2) {
+                int contador = 0;
+                String[] password = null;
+                String[] email = null;
+                while (linea != null) {
+                    if (!linea.equals("")) {
+                        if (contador == 1) {
+                            password = linea.split("=");
+                        } else if (contador == 0) {
+                            email = linea.split("=");
+                        }
+                        if (email != null && password != null && email.length == 2 && password.length == 2) {
+                            if (AlgoritmoMatch.matcherBoyerMoore(email[1], patron) > -1 || AlgoritmoMatch.matcherBoyerMoore(password[1], patron) > -1) {
+                                items.add(new Usuario(email[1], password[1]));
+                            }
 
+                        }
+                        contador++;
+                        linea = documento.readLine();
+                    } else {
+                        contador = 0;
+                        password = null;
+                        email = null;
+                        linea = documento.readLine();
+                    }
+                }
             }
         } catch (IOException ioe) {
             System.out.println(ioe.toString());
@@ -228,6 +304,6 @@ public class TestBuscador {
             System.out.println(e.toString());
         }
 
-        return personas;
+        return items;
     }
 }
