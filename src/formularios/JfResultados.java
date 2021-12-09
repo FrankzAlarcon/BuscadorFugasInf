@@ -45,6 +45,16 @@ public class JfResultados extends javax.swing.JFrame {
         this.jTResultados.setModel(modelo);
         jTResultados.setRowHeight(30); //Establecemos la altura de las filas en 30
     }
+    public void setValoresFB(String resultados){
+        txaFB.setText(resultados);
+    }
+    public void setValoresKMP(String resultados){
+        txaKMP.setText(resultados);
+    }
+    public void setValoresBM(String resultados){
+        txaBM.setText(resultados);
+    }
+        
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,6 +68,15 @@ public class JfResultados extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTResultados = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txaFB = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txaBM = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        txaKMP = new javax.swing.JTextArea();
+        lblFB = new javax.swing.JLabel();
+        lblKMP = new javax.swing.JLabel();
+        lblBM = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,6 +96,24 @@ public class JfResultados extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tekton Pro Ext", 1, 24)); // NOI18N
         jLabel1.setText("RESULTADOS");
 
+        txaFB.setColumns(20);
+        txaFB.setRows(5);
+        jScrollPane2.setViewportView(txaFB);
+
+        txaBM.setColumns(20);
+        txaBM.setRows(5);
+        jScrollPane3.setViewportView(txaBM);
+
+        txaKMP.setColumns(20);
+        txaKMP.setRows(5);
+        jScrollPane4.setViewportView(txaKMP);
+
+        lblFB.setText("Fuerza Bruta");
+
+        lblKMP.setText("KMP");
+
+        lblBM.setText("BM");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -88,15 +125,41 @@ public class JfResultados extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(232, 232, 232))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(92, 92, 92)
+                .addComponent(lblFB)
+                .addGap(165, 165, 165)
+                .addComponent(lblKMP)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblBM)
+                .addGap(107, 107, 107))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblFB)
+                    .addComponent(lblKMP)
+                    .addComponent(lblBM))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
@@ -140,6 +203,15 @@ public class JfResultados extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTResultados;
+    private javax.swing.JLabel lblBM;
+    private javax.swing.JLabel lblFB;
+    private javax.swing.JLabel lblKMP;
+    private javax.swing.JTextArea txaBM;
+    private javax.swing.JTextArea txaFB;
+    private javax.swing.JTextArea txaKMP;
     // End of variables declaration//GEN-END:variables
 }
